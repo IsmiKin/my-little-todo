@@ -1,17 +1,16 @@
 # This docker-compose is for development purposes, so user + passwords
 # would need to be overwritten during stage/prod builds / deployments
 
-version: '3.1'
+version: "3.1"
 
 services:
-
   mongo:
     image: mongo
     restart: always
     ports:
       - 27017:27017
     volumes:
-        - ./migrations:/docker-entrypoint-initdb.d/
+      - ./migrations:/docker-entrypoint-initdb.d/
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
@@ -35,3 +34,11 @@ services:
       - mongo
     ports:
       - 5000:5000
+
+  ui:
+    build: ./frontend
+    restart: always
+    links:
+      - api
+    ports:
+      - 3000:3000
