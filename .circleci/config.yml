@@ -39,8 +39,8 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker push ismikin/my-little-todo_backend:dev
-              docker push ismikin/my-little-todo_frontend:dev
+              docker push ismikin/my-little-todo_backend:${CIRCLE_WORKFLOW_ID}
+              docker push ismikin/my-little-todo_frontend:${CIRCLE_WORKFLOW_ID}
             fi
       # TODO: Upload to coveralls (issue, two sources to cover, two tokens?)
       # - run:
