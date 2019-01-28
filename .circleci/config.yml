@@ -66,6 +66,15 @@ workflows:
             branches:
               only: master
       - docker-publish/publish:
+          image: my-little-todo_frontend
+          requires:
+            - build-and-test
+          tag: latest
+          filters:
+            branches:
+              only: master
+      - docker-publish/publish:
+          image: my-little-todo_backend
           requires:
             - build-and-test
           tag: latest
