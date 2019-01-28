@@ -14,7 +14,7 @@ COPY yarn.lock ./
 RUN yarn install --dev
 RUN yarn add react-scripts
 
-# TODO: fix build
+# TODO: fix build!
 # RUN yarn run build
 
 
