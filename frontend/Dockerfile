@@ -8,8 +8,13 @@ COPY yarn.lock ./
 
 # TODO: uncomment and remove dev one
 # RUN yarn install
+
+# TODO: Create test.Dockerfile and install --dev and run tests there
+# + run coverage and upload reports
 RUN yarn install --dev
 RUN yarn add react-scripts
+
+# TODO: fix build
 # RUN yarn run build
 
 
