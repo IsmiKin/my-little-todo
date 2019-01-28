@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint && yarn run test && yarn --cwd ../frontend lint && yarn --cwd ../frontend test"
+      "pre-commit": "yarn run lint && yarn run test && yarn --cwd ../frontend lint && yarn --cwd ../frontend ci-test"
     }
   }
 }
