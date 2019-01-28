@@ -1,0 +1,74 @@
+version: 2.1
+orbs:
+  docker-publish: circleci/docker-publish@0.1.4
+
+jobs:
+  build-and-test:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+
+      - setup_remote_docker:
+          docker_layer_caching: true
+
+      - run:
+          name: Build docker images
+          command: |
+            docker build -t ismikin/my-little-todo_backend:${CIRCLE_WORKFLOW_ID} backend
+            docker build -t ismikin/my-little-todo_frontend:${CIRCLE_WORKFLOW_ID} frontend
+
+      - run:
+          name: Build expanded image with test dependencies included
+          command: |
+            docker build -f .circleci/test.backend.Dockerfile \
+              --build-arg baseImage=ismikin/my-little-todo_backend:${CIRCLE_WORKFLOW_ID} \
+              -t my-little-todo_backend-test-img backend
+
+            docker build -f .circleci/test.fronte.Dockerfile \
+              --build-arg baseImage=ismikin/my-little-todo_frontend:${CIRCLE_WORKFLOW_ID} \
+              -t my-little-todo_frontend-test-img backend
+
+      - run:
+          name: Run tests
+          command: |
+            docker run --name be-tests my-little-todo_backend-test-img
+            docker run --name fe-tests my-little-todo_frontend-test-img
+
+      # TODO: Upload to coveralls (issue, two sources to cover, two tokens?)
+      # - run:
+      #     name: Copy out test reports and upload to Coveralls
+      #     when: always
+      #     command: |
+      #       # TOO
+      # TODO: store tests for circleci summary
+      # - store_test_results:
+      #     path: test-reports
+
+workflows:
+  version: 2.1
+  build_without_publishing_job:
+    jobs:
+      - build-and-test
+      - docker-publish/publish:
+          requires:
+            - build-and-test
+          deploy: false
+          tag: latest
+          filters:
+            branches:
+              ignore: master
+
+  docker_with_lifecycle:
+    jobs:
+      - build-and-test:
+          filters:
+            branches:
+              only: master
+      - docker-publish/publish:
+          requires:
+            - build-and-test
+          tag: latest
+          filters:
+            branches:
+              only: master
