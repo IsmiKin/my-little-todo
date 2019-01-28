@@ -35,6 +35,13 @@ jobs:
             docker run --name be-tests my-little-todo_backend-test-img
             docker run --name fe-tests my-little-todo_frontend-test-img
 
+      - deploy:
+          name: Push application Docker image
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker push ismikin/my-little-todo_backend:dev
+              docker push ismikin/my-little-todo_frontend:dev
+            fi
       # TODO: Upload to coveralls (issue, two sources to cover, two tokens?)
       # - run:
       #     name: Copy out test reports and upload to Coveralls
@@ -50,34 +57,33 @@ workflows:
   build_without_publishing_job:
     jobs:
       - build-and-test
-      - docker-publish/publish:
-          requires:
-            - build-and-test
-          deploy: false
-          tag: latest
-          filters:
-            branches:
-              ignore: master
-
-  docker_with_lifecycle:
-    jobs:
-      - build-and-test:
-          filters:
-            branches:
-              only: master
-      - docker-publish/publish:
-          image: my-little-todo_frontend
-          requires:
-            - build-and-test
-          tag: latest
-          filters:
-            branches:
-              only: master
-      - docker-publish/publish:
-          image: my-little-todo_backend
-          requires:
-            - build-and-test
-          tag: latest
-          filters:
-            branches:
-              only: master
+      # - docker-publish/publish:
+      #     requires:
+      #       - build-and-test
+      #     deploy: false
+      #     tag: latest
+      #     filters:
+      #       branches:
+      #         ignore: master
+  # docker_with_lifecycle:
+  #   jobs:
+  #     - build-and-test:
+  #         filters:
+  #           branches:
+  #             only: master
+  # - docker-publish/publish:
+  #     image: my-little-todo_frontend
+  #     requires:
+  #       - build-and-test
+  #     tag: latest
+  #     filters:
+  #       branches:
+  #         only: master
+  # - docker-publish/publish:
+  #     image: my-little-todo_backend
+  #     requires:
+  #       - build-and-test
+  #     tag: latest
+  #     filters:
+  #       branches:
+  #         only: master
