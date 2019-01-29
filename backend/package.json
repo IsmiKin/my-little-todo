@@ -24,15 +24,17 @@
   },
   "homepage": "https://github.com/ismikin/my-little-todo#readme",
   "dependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "jest": "^24.0.0",
+    "mongoose": "^5.4.7",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "eslint": "^5.12.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.15.0",
