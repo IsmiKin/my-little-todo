@@ -1,17 +1,22 @@
 import React from 'react'
-import { ListGroup, ListGroupItem } from 'reactstrap'
+import { ListGroup, Jumbotron } from 'reactstrap'
 
 import './TodoList.css'
+import TodoItem from './TodoItem'
 
 const TodoList = ({ todos }) => (
 	<div className="TodoList-container">
-		<ListGroup>
-			{todos.map(todo => (
-				<ListGroupItem className="d-flex justify-content-start">
-					{todo}
-				</ListGroupItem>
-			))}
-		</ListGroup>
+		{todos.length > 0 ? (
+			<ListGroup>
+				{todos.map(todo => (
+					<TodoItem todo={todo} />
+				))}
+			</ListGroup>
+		) : (
+			<Jumbotron>
+				<h1>No item to display.. try adding one!</h1>
+			</Jumbotron>
+		)}
 	</div>
 )
 
