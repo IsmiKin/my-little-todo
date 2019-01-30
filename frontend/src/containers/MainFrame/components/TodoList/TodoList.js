@@ -9,7 +9,7 @@ const TodoList = ({ todos }) => (
 		{todos.length > 0 ? (
 			<ListGroup>
 				{todos.map(todo => (
-					<TodoItem todo={todo} />
+					<TodoItem todo={todo} key={todo._id} />
 				))}
 			</ListGroup>
 		) : (
