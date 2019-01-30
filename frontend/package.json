@@ -4,6 +4,9 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^1.2.13",
+		"@fortawesome/free-solid-svg-icons": "^5.7.0",
+		"@fortawesome/react-fontawesome": "^0.1.4",
 		"bootstrap": "^4.2.1",
 		"eslint-plugin-react": "^7.12.4",
 		"react": "^16.7.0",

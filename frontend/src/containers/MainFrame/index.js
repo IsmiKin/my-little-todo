@@ -7,7 +7,7 @@ class MainFrame extends React.Component {
 	constructor() {
 		super()
 		this.state = {
-			todos: [{ name: 'pika', done: false }, { name: 'char', done: false }]
+			todos: []
 		}
 	}
 
