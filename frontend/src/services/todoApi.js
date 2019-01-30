@@ -16,7 +16,7 @@ const createTodo = newTodo => {
 		method: 'POST',
 		headers: COMMON_HEADERS,
 		body: JSON.stringify(newTodo)
-	})
+	}).then(res => res.json())
 }
 
 const removeTodo = todoId => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Input } from 'reactstrap'
+import { Form, Input, FormGroup, FormFeedback } from 'reactstrap'
 
 import './FormTodo.css'
 
@@ -25,14 +25,18 @@ class FormTodo extends React.Component {
 		return (
 			<div className="FormTodo">
 				<Form onSubmit={e => this.handleSubmit(e)}>
-					<Input
-						type="newTodo"
-						name="newTodo"
-						id="newTodoInput"
-						placeholder="Write a new Todo name"
-						value={this.state.newTodo}
-						onChange={e => this.handleChange(e.target.value)}
-					/>
+					<FormGroup>
+						<Input
+							type="newTodo"
+							name="newTodo"
+							id="newTodoInput"
+							placeholder="Write a new Todo name"
+							required
+							value={this.state.newTodo}
+							onChange={e => this.handleChange(e.target.value)}
+						/>
+						<FormFeedback>The name can not be empty</FormFeedback>
+					</FormGroup>
 				</Form>
 			</div>
 		)

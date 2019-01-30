@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 
 import FormTodo from './components/FormTodo'
 import TodoList from './components/TodoList'
@@ -18,14 +19,17 @@ class MainFrame extends React.Component {
 	}
 
 	handlerCreateTodo(newTodo) {
-		// Add optimistic update
-		todoApi
-			.createTodo(newTodo)
-			.then(res => this.setState({ todos: this.state.todos.push(newTodo) }))
+		todoApi.createTodo(newTodo).then(res => {
+			const todosUpdated = this.state.todos.concat(res)
+			this.setState({ todos: todosUpdated })
+		})
 	}
 
 	handlerDeleteTodo(todoId) {
-		todoApi.removeTodo(todoId).then(res => console.log('removed!'))
+		todoApi.removeTodo(todoId).then(res => {
+			let todoRemoved = _.remove(this.state.todos, todo => todo._id !== todoId)
+			this.setState({ todos: todoRemoved })
+		})
 	}
 
 	render() {
