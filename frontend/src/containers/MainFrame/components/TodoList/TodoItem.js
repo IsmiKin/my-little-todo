@@ -5,7 +5,7 @@ import { faTrashAlt, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 import { ListGroupItem, Button } from 'reactstrap'
 
-const TodoItem = ({ todo }) => (
+const TodoItem = ({ todo, handlerDeleteTodo }) => (
 	<ListGroupItem
 		className="d-flex container align-content-center"
 		disabled={todo.done}
@@ -17,7 +17,7 @@ const TodoItem = ({ todo }) => (
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</Button>
 			)}
-			<Button color="danger">
+			<Button color="danger" onClick={() => handlerDeleteTodo(todo._id)}>
 				<FontAwesomeIcon icon={faTrashAlt} />
 			</Button>
 		</div>

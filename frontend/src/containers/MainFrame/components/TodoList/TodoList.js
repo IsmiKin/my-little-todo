@@ -4,12 +4,16 @@ import { ListGroup, Jumbotron } from 'reactstrap'
 import './TodoList.css'
 import TodoItem from './TodoItem'
 
-const TodoList = ({ todos }) => (
+const TodoList = ({ todos, handlerDeleteTodo }) => (
 	<div className="TodoList-container">
 		{todos.length > 0 ? (
 			<ListGroup>
 				{todos.map(todo => (
-					<TodoItem todo={todo} key={todo._id} />
+					<TodoItem
+						todo={todo}
+						key={todo._id}
+						handlerDeleteTodo={handlerDeleteTodo}
+					/>
 				))}
 			</ListGroup>
 		) : (
