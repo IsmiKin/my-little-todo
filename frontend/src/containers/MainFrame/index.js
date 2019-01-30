@@ -6,6 +6,7 @@ import TodoList from './components/TodoList'
 class MainFrame extends React.Component {
 	constructor() {
 		super()
+		this.state = { todos: ['pika', 'char'] }
 	}
 
 	componentDidMount() {}
@@ -17,7 +18,7 @@ class MainFrame extends React.Component {
 					<FormTodo />
 				</div>
 				<div className="main-frame__list-todo row-md-6">
-					<TodoList />
+					<TodoList {...this.state} />
 				</div>
 			</div>
 		)

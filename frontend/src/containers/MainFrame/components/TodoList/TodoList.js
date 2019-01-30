@@ -3,18 +3,14 @@ import { ListGroup, ListGroupItem } from 'reactstrap'
 
 import './TodoList.css'
 
-const TodoList = () => (
+const TodoList = ({ todos }) => (
 	<div className="TodoList-container">
 		<ListGroup>
-			<ListGroupItem className="d-flex justify-content-start">
-				Cras justo odio
-			</ListGroupItem>
-			<ListGroupItem className="d-flex justify-content-start">
-				Dapibus ac facilisis in
-			</ListGroupItem>
-			<ListGroupItem className="d-flex justify-content-start">
-				Morbi leo risus
-			</ListGroupItem>
+			{todos.map(todo => (
+				<ListGroupItem className="d-flex justify-content-start">
+					{todo}
+				</ListGroupItem>
+			))}
 		</ListGroup>
 	</div>
 )
