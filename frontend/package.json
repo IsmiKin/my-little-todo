@@ -16,6 +16,7 @@
 	},
 	"scripts": {
 		"start": "NODE_PATH=src react-scripts start",
+		"start-dev": "NODE_PATH=src REACT_APP_API_HOST=localhost REACT_APP_API_PORT=5000 react-scripts start",
 		"build": "react-scripts build",
 		"ci-test": "NODE_PATH=src CI=true react-scripts test",
 		"test": "react-scripts test",

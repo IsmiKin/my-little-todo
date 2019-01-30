@@ -3,6 +3,8 @@ import React from 'react'
 import FormTodo from './components/FormTodo'
 import TodoList from './components/TodoList'
 
+import todoApi from 'services/todoApi'
+
 class MainFrame extends React.Component {
 	constructor() {
 		super()
@@ -11,7 +13,9 @@ class MainFrame extends React.Component {
 		}
 	}
 
-	componentDidMount() {}
+	componentDidMount() {
+		todoApi.getAllTodos().then(todos => this.setState({ todos: todos }))
+	}
 
 	render() {
 		return (
