@@ -18,10 +18,10 @@
 	"scripts": {
 		"start": "NODE_PATH=src react-scripts start",
 		"start-dev": "NODE_PATH=src REACT_APP_API_HOST=localhost REACT_APP_API_PORT=5000 react-scripts start",
-		"build": "react-scripts build",
+		"build": "NODE_PATH=src react-scripts build",
 		"ci-test": "NODE_PATH=src CI=true react-scripts test",
 		"test": "NODE_PATH=src react-scripts test",
-		"coverage": "react-scripts test --coverage",
+		"coverage": "NODE_PATH=src react-scripts test --coverage",
 		"eject": "react-scripts eject",
 		"lint": "eslint src/*.js",
 		"storybook": "NODE_PATH=src start-storybook -p 6006 -c .storybook"
