@@ -15,10 +15,15 @@ class MainFrame extends React.Component {
 	}
 
 	componentDidMount() {
+		this.refreshTodos()
+	}
+
+	refreshTodos() {
 		todoApi.getAllTodos().then(todos => this.setState({ todos: todos }))
 	}
 
 	handlerCreateTodo(newTodo) {
+		// TODO: handler exception
 		todoApi.createTodo(newTodo).then(res => {
 			const todosUpdated = this.state.todos.concat(res)
 			this.setState({ todos: todosUpdated })
@@ -26,6 +31,7 @@ class MainFrame extends React.Component {
 	}
 
 	handlerDeleteTodo(todoId) {
+		// TODO: handler exception
 		todoApi.removeTodo(todoId).then(res => {
 			let todoRemoved = _.remove(this.state.todos, todo => todo._id !== todoId)
 			this.setState({ todos: todoRemoved })

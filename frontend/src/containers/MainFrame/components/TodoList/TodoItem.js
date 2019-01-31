@@ -1,9 +1,15 @@
 import React from 'react'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import {
+	faTrashAlt,
+	faCheckCircle,
+	faPen
+} from '@fortawesome/free-solid-svg-icons'
 
 import { ListGroupItem, Button } from 'reactstrap'
+
+import ModalPopUp from 'components/ModalPopUp'
 
 const TodoItem = ({ todo, handlerDeleteTodo }) => (
 	<ListGroupItem
@@ -16,6 +22,15 @@ const TodoItem = ({ todo, handlerDeleteTodo }) => (
 				<Button color="success">
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</Button>
+			)}
+			{todo.done ? null : (
+				<ModalPopUp
+					color="warning"
+					title="Edit ToDo"
+					buttonLabel={<FontAwesomeIcon icon={faPen} />}
+				>
+					Lalala
+				</ModalPopUp>
 			)}
 			<Button color="danger" onClick={() => handlerDeleteTodo(todo._id)}>
 				<FontAwesomeIcon icon={faTrashAlt} />
