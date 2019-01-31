@@ -5,9 +5,9 @@ import './TodoList.css'
 import TodoItem from './TodoItem'
 
 const TodoList = ({ todos, handlerDeleteTodo, handlerUpdateTodo }) => (
-	<div className="TodoList-component">
+	<div className="TodoList-component__list-group">
 		{todos.length > 0 ? (
-			<ListGroup className="TodoList-component__list-group">
+			<ListGroup>
 				{todos.map(todo => (
 					<TodoItem
 						todo={todo}

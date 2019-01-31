@@ -14,18 +14,18 @@ import FormTodo from '../FormTodo'
 
 const TodoItem = ({ todo, handlerDeleteTodo, handlerUpdateTodo }) => (
 	<ListGroupItem
-		className="d-flex todo-item-container container align-content-center"
+		className="d-flex todo-item-container  container align-content-center"
 		disabled={todo.done}
 	>
 		<div className="name-wrapper p-2">{todo.name}</div>
 		{todo.done ? null : (
-			<div className="actions-button-wrapper ml-auto p-2">
-				<Button className="button-wrapper" color="success">
+			<div className=" actions-button-wrapper ml-auto p-2">
+				<Button color="success" className="button-wrapper">
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</Button>
 
 				<ModalPopUp
-					className="button-wrapper editTodoModal"
+					className="button-wrapper"
 					color="warning"
 					title="Edit ToDo"
 					buttonLabel={<FontAwesomeIcon icon={faPen} />}
