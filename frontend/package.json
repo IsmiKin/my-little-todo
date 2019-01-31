@@ -20,7 +20,7 @@
 		"start-dev": "NODE_PATH=src REACT_APP_API_HOST=localhost REACT_APP_API_PORT=5000 react-scripts start",
 		"build": "NODE_PATH=src react-scripts build",
 		"ci-test": "NODE_PATH=src CI=true react-scripts test",
-		"test": "NODE_PATH=src react-scripts test",
+		"test": "NODE_PATH=src react-scripts test --env=jsdom",
 		"coverage": "NODE_PATH=src react-scripts test --coverage",
 		"eject": "react-scripts eject",
 		"lint": "eslint src/*.js",
@@ -49,6 +49,8 @@
 		"@storybook/react": "^4.1.11",
 		"babel-jest": "^24.0.0",
 		"babel-loader": "^8.0.5",
+		"enzyme": "^3.8.0",
+		"enzyme-adapter-react-16": "^1.8.0",
 		"jest": "^24.0.0",
 		"react-test-renderer": "^16.7.0"
 	}

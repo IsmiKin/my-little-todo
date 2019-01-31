@@ -14,17 +14,18 @@ import FormTodo from '../FormTodo'
 
 const TodoItem = ({ todo, handlerDeleteTodo, handlerUpdateTodo }) => (
 	<ListGroupItem
-		className="d-flex container align-content-center"
+		className="d-flex todo-item-container container align-content-center"
 		disabled={todo.done}
 	>
 		<div className="name-wrapper p-2">{todo.name}</div>
 		{todo.done ? null : (
-			<div className="remove-button-wrapper ml-auto p-2">
-				<Button color="success">
+			<div className="actions-button-wrapper ml-auto p-2">
+				<Button className="button-wrapper" color="success">
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</Button>
 
 				<ModalPopUp
+					className="button-wrapper editTodoModal"
 					color="warning"
 					title="Edit ToDo"
 					buttonLabel={<FontAwesomeIcon icon={faPen} />}
@@ -35,7 +36,11 @@ const TodoItem = ({ todo, handlerDeleteTodo, handlerUpdateTodo }) => (
 					/>
 				</ModalPopUp>
 
-				<Button color="danger" onClick={() => handlerDeleteTodo(todo._id)}>
+				<Button
+					className="button-wrapper"
+					color="danger"
+					onClick={() => handlerDeleteTodo(todo._id)}
+				>
 					<FontAwesomeIcon icon={faTrashAlt} />
 				</Button>
 			</div>
