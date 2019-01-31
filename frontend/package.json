@@ -9,6 +9,7 @@
 		"@fortawesome/react-fontawesome": "^0.1.4",
 		"bootstrap": "^4.2.1",
 		"eslint-plugin-react": "^7.12.4",
+		"lodash": "^4.17.11",
 		"react": "^16.7.0",
 		"react-dom": "^16.7.0",
 		"react-scripts": "2.1.3",
@@ -16,13 +17,14 @@
 	},
 	"scripts": {
 		"start": "NODE_PATH=src react-scripts start",
-		"build": "react-scripts build",
+		"start-dev": "NODE_PATH=src REACT_APP_API_HOST=localhost REACT_APP_API_PORT=5000 react-scripts start",
+		"build": "NODE_PATH=src react-scripts build",
 		"ci-test": "NODE_PATH=src CI=true react-scripts test",
-		"test": "react-scripts test",
-		"coverage": "react-scripts test --coverage",
+		"test": "NODE_PATH=src react-scripts test",
+		"coverage": "NODE_PATH=src react-scripts test --coverage",
 		"eject": "react-scripts eject",
 		"lint": "eslint src/*.js",
-		"storybook": "start-storybook -p 6006 -c .storybook"
+		"storybook": "NODE_PATH=src start-storybook -p 6006 -c .storybook"
 	},
 	"keywords": [],
 	"author": "IsmiKin <ismikin@gmail.com> (http://github.com/ismikin)",
