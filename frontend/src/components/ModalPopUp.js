@@ -34,6 +34,9 @@ class ModalPopUp extends React.Component {
 						<Button color="secondary" onClick={this.toggle}>
 							Cancel
 						</Button>
+						<Button color="primary" onClick={this.toggle}>
+							Done
+						</Button>
 					</ModalFooter>
 				</Modal>
 			</span>

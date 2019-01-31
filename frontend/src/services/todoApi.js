@@ -25,8 +25,17 @@ const removeTodo = todoId => {
 	})
 }
 
+const updateTodo = updatedTodo => {
+	return fetch(`${BASE_URL}/${updatedTodo._id}`, {
+		method: 'PUT',
+		headers: COMMON_HEADERS,
+		body: JSON.stringify(updatedTodo)
+	})
+}
+
 module.exports = {
 	getAllTodos,
 	createTodo,
-	removeTodo
+	removeTodo,
+	updateTodo
 }

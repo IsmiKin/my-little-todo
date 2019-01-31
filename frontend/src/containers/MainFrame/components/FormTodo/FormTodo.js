@@ -14,6 +14,10 @@ class FormTodo extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = INITIAL_STATE
+		this.state = {
+			...INITIAL_STATE,
+			newTodo: this.props.todo ? this.props.todo : INITIAL_STATE.newTodo
+		}
 	}
 
 	handleChange(value) {
@@ -21,12 +25,16 @@ class FormTodo extends React.Component {
 	}
 
 	resetState() {
-		this.setState(INITIAL_STATE)
+		const initialState = {
+			...INITIAL_STATE,
+			newTodo: { ...INITIAL_STATE.newTodo, _id: this.props.todoId }
+		}
+		this.setState(initialState)
 	}
 
 	handleSubmit(e) {
 		e.preventDefault()
-		this.props.createTodoCall(this.state.newTodo)
+		this.props.apiTodoCall(this.state.newTodo)
 		this.resetState()
 	}
 

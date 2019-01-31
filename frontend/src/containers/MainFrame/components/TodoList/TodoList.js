@@ -4,7 +4,7 @@ import { ListGroup, Jumbotron } from 'reactstrap'
 import './TodoList.css'
 import TodoItem from './TodoItem'
 
-const TodoList = ({ todos, handlerDeleteTodo }) => (
+const TodoList = ({ todos, handlerDeleteTodo, handlerUpdateTodo }) => (
 	<div className="TodoList-container">
 		{todos.length > 0 ? (
 			<ListGroup>
@@ -13,6 +13,7 @@ const TodoList = ({ todos, handlerDeleteTodo }) => (
 						todo={todo}
 						key={todo._id}
 						handlerDeleteTodo={handlerDeleteTodo}
+						handlerUpdateTodo={handlerUpdateTodo}
 					/>
 				))}
 			</ListGroup>

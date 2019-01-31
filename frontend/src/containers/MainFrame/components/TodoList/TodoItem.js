@@ -10,32 +10,36 @@ import {
 import { ListGroupItem, Button } from 'reactstrap'
 
 import ModalPopUp from 'components/ModalPopUp'
+import FormTodo from '../FormTodo'
 
-const TodoItem = ({ todo, handlerDeleteTodo }) => (
+const TodoItem = ({ todo, handlerDeleteTodo, handlerUpdateTodo }) => (
 	<ListGroupItem
 		className="d-flex container align-content-center"
 		disabled={todo.done}
 	>
 		<div className="name-wrapper p-2">{todo.name}</div>
-		<div className="remove-button-wrapper ml-auto p-2">
-			{todo.done ? null : (
+		{todo.done ? null : (
+			<div className="remove-button-wrapper ml-auto p-2">
 				<Button color="success">
 					<FontAwesomeIcon icon={faCheckCircle} />
 				</Button>
-			)}
-			{todo.done ? null : (
+
 				<ModalPopUp
 					color="warning"
 					title="Edit ToDo"
 					buttonLabel={<FontAwesomeIcon icon={faPen} />}
 				>
-					Lalala
+					<FormTodo
+						todo={todo}
+						apiTodoCall={newTodo => handlerUpdateTodo(newTodo)}
+					/>
 				</ModalPopUp>
-			)}
-			<Button color="danger" onClick={() => handlerDeleteTodo(todo._id)}>
-				<FontAwesomeIcon icon={faTrashAlt} />
-			</Button>
-		</div>
+
+				<Button color="danger" onClick={() => handlerDeleteTodo(todo._id)}>
+					<FontAwesomeIcon icon={faTrashAlt} />
+				</Button>
+			</div>
+		)}
 	</ListGroupItem>
 )
 

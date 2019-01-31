@@ -6,6 +6,10 @@ import TodoList from './components/TodoList'
 
 import todoApi from 'services/todoApi'
 
+// TODO Refactor: move setState before callApi (optimistic update)
+// and refreshTodos on call api failure catch
+// .. but not on creation 'cos we need the _id back from API
+
 class MainFrame extends React.Component {
 	constructor() {
 		super()
@@ -30,6 +34,16 @@ class MainFrame extends React.Component {
 		})
 	}
 
+	handlerUpdateTodo(todoUpdated) {
+		// TODO: handler exception
+		todoApi.updateTodo(todoUpdated).then(res => {
+			const index = _.findIndex(this.state.todos, { _id: todoUpdated._id })
+			const todosUpdated = this.state.todos.slice(0)
+			todosUpdated.splice(index, 1, todoUpdated)
+			this.setState({ todos: todosUpdated })
+		})
+	}
+
 	handlerDeleteTodo(todoId) {
 		// TODO: handler exception
 		todoApi.removeTodo(todoId).then(res => {
@@ -42,14 +56,15 @@ class MainFrame extends React.Component {
 		return (
 			<div className="main-frame container">
 				<div className="main-frame__input-todo row-md-6">
-					<FormTodo
-						createTodoCall={newTodo => this.handlerCreateTodo(newTodo)}
-					/>
+					<FormTodo apiTodoCall={newTodo => this.handlerCreateTodo(newTodo)} />
 				</div>
 				<div className="main-frame__list-todo row-md-6">
 					<TodoList
 						{...this.state}
 						handlerDeleteTodo={todoId => this.handlerDeleteTodo(todoId)}
+						handlerUpdateTodo={todoUpdated =>
+							this.handlerUpdateTodo(todoUpdated)
+						}
 					/>
 				</div>
 			</div>
