@@ -5,7 +5,7 @@ import './TodoList.css'
 import TodoItem from './TodoItem'
 
 const TodoList = ({ todos, handlerDeleteTodo, handlerUpdateTodo }) => (
-	<div className="TodoList-container">
+	<div className="TodoList-component__list-group">
 		{todos.length > 0 ? (
 			<ListGroup>
 				{todos.map(todo => (
@@ -18,7 +18,7 @@ const TodoList = ({ todos, handlerDeleteTodo, handlerUpdateTodo }) => (
 				))}
 			</ListGroup>
 		) : (
-			<Jumbotron>
+			<Jumbotron className="TodoList-component__empty-todos-message">
 				<h1>No item to display.. try adding one!</h1>
 			</Jumbotron>
 		)}
