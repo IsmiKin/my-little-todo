@@ -49,5 +49,5 @@ services:
     ports:
       - 3000:3000
     environment:
-      API_HOST: api
-      API_PORT: 5000
+      REACT_APP_API_HOST: localhost
+      REACT_APP_API_PORT: 5000
